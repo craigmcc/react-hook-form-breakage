@@ -25,8 +25,10 @@ const MyForm = () => {
 
     const validationSchema = Yup.object().shape({
         firstField: Yup.string()
+            .nullable()
             .required("First field is required"),
         secondField: Yup.string()
+            .nullable()
             .test("abc-value",
                 "Not typing 'abc' is a validation violation",
                 function (value) {
@@ -55,14 +57,14 @@ const MyForm = () => {
                 <Row className="mb-3">
                     <TextField
                         autoFocus
-                        errors={errors}
+                        error={errors.firstField}
                         label="First Field:"
                         name="firstField"
                         register={register}
                         valid="You MUST enter a value in this field"
                     />
                     <TextField
-                        errors={errors}
+                        error={errors.secondField}
                         label="Second Field:"
                         name="secondField"
                         register={register}
